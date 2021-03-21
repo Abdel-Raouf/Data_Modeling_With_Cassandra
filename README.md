@@ -1,6 +1,13 @@
+# Project Description:
+
+- A startup called Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app. Currently, there is no easy way to query the data for further analysis, since the data reside in a directory of CSV files on user activity on the app.
+
+- As the data engineer assigned to the project, my role is to create an Apache Cassandra database which can create queries on song play data to answer the questions of the analytics team.
+
 # Purpose:
 
 - Modeling a NoSQL Database Tables Based on the Queries We Need To Extract From The Data.
+- ETL Pipeline (Construct an ETL Pipeline to Copy Data From Multiple Log Files To a Single file).
 
 # Queries We Need To Extract:
 
