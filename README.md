@@ -1,7 +1,7 @@
 # Purpose:
 - Modeling a NoSQL Database Tables Based on the Queries We Need To Extract From The Data.
 
-# Queries We Need To Answer:
+# Queries We Need To Extract:
 1. Give me the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
 2. Give me only the following: name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
 3. Give me every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own'
@@ -21,12 +21,12 @@
 # Primary Keys Selection:
 1. For the first query: 
   - We need to return songs that's heard with it's duration, during a specific session with the number of items that exists in this session:
-    1. we made `SessionId` the partition key, as the partition key is responsible for distributing data among nodes, so we need it to be as unique as possible.
+    1. we made `SessionId` the partition key, as to partition data related to each session.
     2. We made `ItemInSession` the Clustering key, as to sort the data within each partition related to the `ItemInSession`.
 2. For the second query: 
   - We need to return the users fullnames that heard a specific song(based on the `ItemInSession`), related to which session (users songs history):
-    1. we made `UserId` the partition key, as the partition key is responsible for distributing data among nodes, so we need it to be as unique as possible.
-    2. We made `SessionId` the Clustering key, as to sort the data within each partition related to the `SessionId`.
+    1. we made `UserId` the partition key, as to partition data related to each user.
+    2. We made `SessionId` the Clustering key, as to sort the data within each partition related to the session the user was loged-in when he/she was hearing the song.
     3. We add another Clustering key `ItemInSession`, as to apply sorting by `SessionId` ,then a second level sorting(nested sorting) with `ItemInSession` related to each song.
 3. For the third query:
   - We need to return every user listened to the specific song we want:
